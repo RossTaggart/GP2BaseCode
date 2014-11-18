@@ -39,6 +39,10 @@ public:
     bool loadShader(const std::string& vsFilename,const std::string& fsFilename);
     GLint getUniformLocation(const std::string& name);
 	
+	void loadDiffuseMap(const std::string& filename);
+
+	GLuint getDiffuseMap();
+
 	vec4& getAmbientColour();
 	void setAmbientColour(float r, float g, float b, float a);
 
@@ -53,6 +57,7 @@ public:
 protected:
 private:
     GLuint m_ShaderProgram;
+	GLuint m_DiffuseMap;
 	vec4 m_AmbientColour;
 	vec4 m_DiffuseColour;
 	vec4 m_SpecularColour;
