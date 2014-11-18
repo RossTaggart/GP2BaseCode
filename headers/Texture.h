@@ -21,6 +21,7 @@
 GLuint convertSDLSurfaceToGLTexture(SDL_Surface * surface);
 
 GLuint loadTextureFromFile(const std::string& filename);
+
 //this shouldn't be used for realtime use, build on startup!
 GLuint loadTextureFromFont(const std::string& fontFilename, int pointSize, const std::string& text);
 
