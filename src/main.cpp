@@ -255,7 +255,7 @@ void Initialise()
 	displayList.push_back(mainLight);
 
 
-    GameObject * cube=new GameObject();
+   /* GameObject * cube=new GameObject();
     cube->setName("Cube");
     Transform *transform=new Transform();
     transform ->setPosition(0.0f,0.0f,0.0f);
@@ -269,7 +269,7 @@ void Initialise()
     
     Mesh * mesh=new Mesh();
     cube->setMesh(mesh);
-    displayList.push_back(cube);
+    displayList.push_back(cube);*/
 
     
     //alternative sytanx
@@ -278,8 +278,8 @@ void Initialise()
         (*iter)->init();
     }
     
-    mesh->copyVertexData(8,sizeof(Vertex), (void**)triangleData);
-    mesh->copyIndexData(36,sizeof(int), (void**)indices);
+   /* mesh->copyVertexData(8,sizeof(Vertex), (void**)triangleData);
+    mesh->copyIndexData(36,sizeof(int), (void**)indices);*/
 
 	std::string modelPath = ASSET_PATH + MODEL_PATH + "armoredrecon.fbx";
 	GameObject * go = loadFBXFromFile(modelPath);
