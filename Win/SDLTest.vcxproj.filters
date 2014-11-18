@@ -68,6 +68,9 @@
     <ClInclude Include="..\headers\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\headers\FBXLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\headers\GameObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,9 +93,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\headers\Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FBXLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

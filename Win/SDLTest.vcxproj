@@ -29,6 +29,7 @@
   <ItemGroup>
     <ClInclude Include="..\headers\Camera.h" />
     <ClInclude Include="..\headers\Component.h" />
+    <ClInclude Include="..\headers\FBXLoader.h" />
     <ClInclude Include="..\headers\GameObject.h" />
     <ClInclude Include="..\headers\Light.h" />
     <ClInclude Include="..\headers\Material.h" />
@@ -37,7 +38,6 @@
     <ClInclude Include="..\headers\Texture.h" />
     <ClInclude Include="..\headers\Transform.h" />
     <ClInclude Include="..\headers\Vertex.h" />
-    <ClInclude Include="FBXLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\Camera.cpp" />

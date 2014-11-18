@@ -8,10 +8,9 @@
 
 class GameObject;
 
-GameObject * loadFBXFromFile(const std::string& filename);
+GameObject * loadFBXFromFile(const std::string& filename); 
 
 void processNode(FbxNode *node, GameObject *rootGo);
-
 void processAttribute(FbxNodeAttribute * attribute, GameObject * go);
 
 void processMesh(FbxMesh * mesh, GameObject *go);
