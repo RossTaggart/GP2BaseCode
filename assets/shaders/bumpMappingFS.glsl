@@ -1,0 +1,38 @@
+#version 150
+
+out vec4 FragColor;
+
+in vec3 vertexNormalOut;
+in vec3 cameraDirectionOut;
+in vec3 lightDirectionOut;
+
+in vec2 texCoordsOut;
+
+uniform vec4 ambientMaterialColour;
+uniform vec4 diffuseMaterialColour;
+uniform vec4 specularMaterialColour;
+uniform float specularPower;
+
+uniform vec4 ambientLightColour;
+uniform vec4 diffuseLightColour;
+uniform vec4 specularLightColour;
+
+uniform sampler2D diffuseMap;
+uniform sampler2D specularMap;
+uniform sampler2D bumpMap;
+
+
+void main()
+{
+	vec3 bumpNormals = normalize(2.0*texture2D(bumpMap, texCoordsOut).rgb - 1.0);
+
+	float diffuseTerm = dot(vertexNormalOut, lightDirectionOut);
+	vec3 halfWayVec = normalize(cameraDirectionOut + lightDirectionOut);
+	float specularTerm = pow(dot(vertexNormalOut, halfWayVec), specularPower);
+	
+	vec4 diffuseTextureColour = texture(diffuseMap, texCoordsOut);
+	vec4 specularTextureColour = texture(specularMap, texCoordsOut);
+
+	FragColor = (ambientMaterialColour*ambientLightColour) + ((vec4(0.0f,0.0f,0.0f,1.0f) + diffuseTextureColour)
+		*diffuseLightColour*diffuseTerm) + (specularMaterialColour *specularLightColour*specularTerm);
+}
