@@ -256,32 +256,11 @@ void Initialise()
 	mainLight->setLight(light);
 	displayList.push_back(mainLight);
 
-
-   /* GameObject * cube=new GameObject();
-    cube->setName("Cube");
-    Transform *transform=new Transform();
-    transform ->setPosition(0.0f,0.0f,0.0f);
-    cube ->setTransform(transform);
-    
-    Material * material=new Material();
-    std::string vsPath = ASSET_PATH + SHADER_PATH+"/specularVS.glsl";
-    std::string fsPath = ASSET_PATH + SHADER_PATH + "/specularFS.glsl";
-    material -> loadShader(vsPath,fsPath);
-    cube->setMaterial(material);
-    
-    Mesh * mesh=new Mesh();
-    cube->setMesh(mesh);
-    displayList.push_back(cube);*/
-
-    
     //alternative sytanx
     for(auto iter=displayList.begin();iter!=displayList.end();iter++)
     {
         (*iter)->init();
     }
-    
-   /* mesh->copyVertexData(8,sizeof(Vertex), (void**)triangleData);
-    mesh->copyIndexData(36,sizeof(int), (void**)indices);*/
 
 	std::string modelPath = ASSET_PATH + MODEL_PATH + "armoredrecon.fbx";
 	GameObject * go = loadFBXFromFile(modelPath);
@@ -344,6 +323,7 @@ void renderGameObject(GameObject * pObject)
 		GLint specularpowerLocation = currentMaterial->getUniformLocation("specularPower");
 		GLint cameraPositionLocation = currentMaterial->getUniformLocation("cameraPosition");
 		GLint diffuseTextureLocation = currentMaterial->getUniformLocation("diffuseMap");
+		GLint specularTextureLocation = currentMaterial->getUniformLocation("specularMap");
 
 		Camera * cam = mainCamera->getCamera();
 		Light* light = mainLight->getLight();
@@ -377,6 +357,7 @@ void renderGameObject(GameObject * pObject)
 		glUniform3fv(lightDirectionLocation, 1, glm::value_ptr(lightDirection));
 
 		glUniform1i(diffuseTextureLocation, 0);
+		glUniform1i(specularTextureLocation, 0);
 
 		glDrawElements(GL_TRIANGLES, currentMesh->getIndexCount(), GL_UNSIGNED_INT, 0);
 	}
