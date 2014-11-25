@@ -28,6 +28,6 @@ void main()
 	
 	vec4 diffuseTextureColour = texture(diffuseMap, texCoordsOut);
 
-	FragColor = (ambientMaterialColour*ambientLightColour) + ((diffuseMaterialColour + diffuseTextureColour)
+	FragColor = (ambientMaterialColour*ambientLightColour) + ((vec4(0.0f,0.0f,0.0f,1.0f) + diffuseTextureColour)
 		*diffuseLightColour*diffuseTerm) + (specularMaterialColour *specularLightColour*specularTerm);
 }

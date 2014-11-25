@@ -2,9 +2,9 @@
 
 in vec3 vertexPosition;
 in vec3 vertexNormals;
-in vec2 vertexTexCoords
+in vec2 vertexTexCoords;
 
-out vec4 vertexNormalOut;
+out vec3 vertexNormalOut;
 out vec3 cameraDirectionOut;
 out vec3 lightDirectionOut;
 out vec2 texCoordsOut;

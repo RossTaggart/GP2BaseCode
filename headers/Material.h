@@ -40,8 +40,10 @@ public:
     GLint getUniformLocation(const std::string& name);
 
 	void loadDiffuseMap(const std::string& filename);
+	void loadSpecularMap(const std::string& filename);
 
 	GLuint getDiffuseMap();
+	GLuint getSpecularMap();
 	
 	vec4& getAmbientColour();
 	void setAmbientColour(float r, float g, float b, float a);
@@ -58,6 +60,8 @@ protected:
 private:
     GLuint m_ShaderProgram;
 	GLuint m_DiffuseMap;
+	GLuint m_SpecularMap;
+
 	vec4 m_AmbientColour;
 	vec4 m_DiffuseColour;
 	vec4 m_SpecularColour;
