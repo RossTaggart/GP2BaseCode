@@ -18,6 +18,7 @@ uniform vec4 diffuseLightColour;
 uniform vec4 specularLightColour;
 
 uniform sampler2D diffuseMap;
+uniform sampler2D specularMap;
 
 
 void main()
@@ -27,6 +28,7 @@ void main()
 	float specularTerm = pow(dot(vertexNormalOut, halfWayVec), specularPower);
 	
 	vec4 diffuseTextureColour = texture(diffuseMap, texCoordsOut);
+	vec4 specularTextureColour = texture(specularMap, texCoordsOut);
 
 	FragColor = (ambientMaterialColour*ambientLightColour) + ((vec4(0.0f,0.0f,0.0f,1.0f) + diffuseTextureColour)
 		*diffuseLightColour*diffuseTerm) + (specularMaterialColour *specularLightColour*specularTerm);

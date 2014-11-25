@@ -294,12 +294,14 @@ void Initialise()
 		material->loadShader(vsPath, fsPath);
 
 		string diffTexturePath = ASSET_PATH + TEXTURE_PATH + "armoredrecon_diff.png";
+		string specTexturePath = ASSET_PATH + TEXTURE_PATH + "armoredrecon_spec.png";
 
 		material->loadDiffuseMap(diffTexturePath);
+		material->loadSpecularMap(specTexturePath);
 		go->getChild(i)->setMaterial(material);
 	}
-	go->getTransform()->setPosition(0.0f, -1.0f, -3.0f);
-	go->getTransform()->setRotation(25.0f, 0.0f, 0.0f);
+	go->getTransform()->setPosition(0.0f, -1.0f, -1.0f);
+	go->getTransform()->setRotation(25.0f, 25.0f, 0.0f);
 	displayList.push_back(go);
 }
 
