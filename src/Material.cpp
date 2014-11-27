@@ -14,12 +14,13 @@ Material::Material()
 {
 	m_ShaderProgram = -1;
 	m_Type = "Material";
-	m_AmbientColour = vec4(0.5f, 0.5f, 0.5f, 1.0f);
-	m_DiffuseColour = vec4(0.75f, 0.75f, 0.75f, 1.0f);
-	m_SpecularColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_AmbientColour = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	m_DiffuseColour = vec4(0.0f, 0.00f, 0.0f, 1.0f);
+	m_SpecularColour = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 	m_SpecularPower = 200.0f;
 	m_DiffuseMap = 0;
 	m_SpecularMap = 0;
+	m_BumpMap = 0;
 }
 
 Material::~Material()
@@ -29,6 +30,8 @@ Material::~Material()
 
 void Material::destroy()
 {
+	glDeleteTextures(1, &m_BumpMap);
+	glDeleteTextures(1, &m_SpecularMap);
 	glDeleteTextures(1, &m_DiffuseMap);
     glDeleteProgram(m_ShaderProgram);
 }
@@ -40,6 +43,8 @@ void Material::bind()
 	glBindTexture(GL_TEXTURE_2D, m_DiffuseMap);
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, m_SpecularMap);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, m_BumpMap);
 }
 
 bool Material::loadShader(const std::string& vsFilename,const std::string& fsFilename)
@@ -124,6 +129,11 @@ GLuint Material::getSpecularMap()
 	return m_SpecularMap;
 }
 
+GLuint Material::getBumpMap()
+{
+	return m_BumpMap;
+}
+
 void Material::loadDiffuseMap(const std::string& filename)
 {
 	m_DiffuseMap = loadTextureFromFile(filename);
@@ -132,4 +142,9 @@ void Material::loadDiffuseMap(const std::string& filename)
 void Material::loadSpecularMap(const std::string& filename)
 {
 	m_SpecularMap = loadTextureFromFile(filename);
+}
+
+void Material::loadBumpMap(const std::string& filename)
+{
+	m_BumpMap = loadTextureFromFile(filename);
 }

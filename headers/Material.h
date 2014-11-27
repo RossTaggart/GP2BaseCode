@@ -41,9 +41,11 @@ public:
 
 	void loadDiffuseMap(const std::string& filename);
 	void loadSpecularMap(const std::string& filename);
+	void loadBumpMap(const std::string& filename);
 
 	GLuint getDiffuseMap();
 	GLuint getSpecularMap();
+	GLuint getBumpMap();
 	
 	vec4& getAmbientColour();
 	void setAmbientColour(float r, float g, float b, float a);
@@ -61,6 +63,7 @@ private:
     GLuint m_ShaderProgram;
 	GLuint m_DiffuseMap;
 	GLuint m_SpecularMap;
+	GLuint m_BumpMap;
 
 	vec4 m_AmbientColour;
 	vec4 m_DiffuseColour;

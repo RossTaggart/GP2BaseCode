@@ -4,7 +4,6 @@ out vec4 FragColor;
 
 in vec3 cameraDirectionOut;
 in vec3 lightDirectionOut;
-
 in vec2 texCoordsOut;
 
 uniform vec4 ambientMaterialColour;
@@ -32,6 +31,6 @@ void main()
 	vec4 diffuseTextureColour = texture(diffuseMap, texCoordsOut);
 	vec4 specularTextureColour = texture(specularMap, texCoordsOut);
 
-	FragColor = (ambientMaterialColour*ambientLightColour) + ((vec4(0.0f,0.0f,0.0f,1.0f) + diffuseTextureColour)
-		*diffuseLightColour*diffuseTerm) + (specularMaterialColour *specularLightColour*specularTerm);
+	FragColor = (ambientMaterialColour*ambientLightColour) + ((diffuseMaterialColour+diffuseTextureColour)
+		*diffuseLightColour*diffuseTerm) + ((specularMaterialColour+specularTextureColour)*specularLightColour*specularTerm);
 }

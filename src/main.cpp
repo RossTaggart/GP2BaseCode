@@ -79,48 +79,6 @@ std::vector<GameObject*> displayList;
 GameObject * mainCamera;
 GameObject * mainLight;
 
-
-//Vertex triangleData[] = {
-//		{ vec3(-0.5f, 0.5f, 0.5f), vec3(0.25f,0.25f,0.5f),vec2(0.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) },// Top Left
-//		{ vec3(-0.5f, -0.5f, 0.5f), vec3(0.25f, 0.25f, 0.5f), vec2(0.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) },// Bottom Left
-//		{ vec3(0.5f, -0.5f, 0.5f), vec3(0.25f, -0.25f, 0.5f), vec2(1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f) }, //Bottom Right
-//		{ vec3(0.5f, 0.5f, 0.5f), vec3(0.25f, -0.25f, 0.5f), vec2(1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) },// Top Right
-//		
-//		
-//		//back
-//		{ vec3(-0.5f, 0.5f, -0.5f), vec3(0.25f, 0.25f, -0.5f), vec2(0.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f) },// Top Left
-//		{ vec3(-0.5f, -0.5f, -0.5f), vec3(0.25f, 0.25f, -0.5f), vec2(0.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) },// Bottom Left
-//		{ vec3(0.5f, -0.5f, -0.5f), vec3(0.25f, -0.25f, -0.5f), vec2(1.0f, 1.0f), vec4(0.0f, 0.0f, 0.0f, 1.0f) }, //Bottom Right
-//		{ vec3(0.5f, 0.5f, -0.5f), vec3(0.25f, -0.25f, -0.5f), vec2(1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) }// Top Right
-//};
-
-
-//GLuint indices[]={
-//    //front
-//    0,1,2,
-//    0,3,2,
-//    
-//    //left
-//    4,5,1,
-//    4,1,0,
-//    
-//    //right
-//    3,7,2,
-//    7,6,2,
-//    
-//    //bottom
-//    1,5,2,
-//    6,2,1,
-//    
-//    //top
-//    5,0,7,
-//    5,7,3,
-//    
-//    //back
-//    4,5,6,
-//    4,7,6
-//};
-
 void CheckForErrors()
 {
     GLenum error;
@@ -268,15 +226,17 @@ void Initialise()
 	{
 		Material * material = new Material();
 		material->init();
-		std::string vsPath = ASSET_PATH + SHADER_PATH + "/directionalLightTextureVS.glsl";
-		std::string fsPath = ASSET_PATH + SHADER_PATH + "/directionalLightTextureFS.glsl";
+		std::string vsPath = ASSET_PATH + SHADER_PATH + "/bumpMappingVS.glsl";
+		std::string fsPath = ASSET_PATH + SHADER_PATH + "/bumpMappingFS.glsl";
 		material->loadShader(vsPath, fsPath);
 
 		string diffTexturePath = ASSET_PATH + TEXTURE_PATH + "armoredrecon_diff.png";
 		string specTexturePath = ASSET_PATH + TEXTURE_PATH + "armoredrecon_spec.png";
+		string bumpTexturePath = ASSET_PATH + TEXTURE_PATH + "armoredrecon_N.png";
 
 		material->loadDiffuseMap(diffTexturePath);
 		material->loadSpecularMap(specTexturePath);
+		material->loadBumpMap(bumpTexturePath);
 		go->getChild(i)->setMaterial(material);
 	}
 	go->getTransform()->setPosition(0.0f, -1.0f, -1.0f);
@@ -324,6 +284,7 @@ void renderGameObject(GameObject * pObject)
 		GLint cameraPositionLocation = currentMaterial->getUniformLocation("cameraPosition");
 		GLint diffuseTextureLocation = currentMaterial->getUniformLocation("diffuseMap");
 		GLint specularTextureLocation = currentMaterial->getUniformLocation("specularMap");
+		GLint bumpTextureLocation = currentMaterial->getUniformLocation("bumpMap");
 
 		Camera * cam = mainCamera->getCamera();
 		Light* light = mainLight->getLight();
@@ -358,6 +319,7 @@ void renderGameObject(GameObject * pObject)
 
 		glUniform1i(diffuseTextureLocation, 0);
 		glUniform1i(specularTextureLocation, 0);
+		glUniform1i(bumpTextureLocation, 0);
 
 		glDrawElements(GL_TRIANGLES, currentMesh->getIndexCount(), GL_UNSIGNED_INT, 0);
 	}
