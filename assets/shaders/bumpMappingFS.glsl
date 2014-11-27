@@ -2,7 +2,6 @@
 
 out vec4 FragColor;
 
-in vec3 vertexNormalOut;
 in vec3 cameraDirectionOut;
 in vec3 lightDirectionOut;
 
@@ -26,9 +25,9 @@ void main()
 {
 	vec3 bumpNormals = normalize(2.0*texture2D(bumpMap, texCoordsOut).rgb - 1.0);
 
-	float diffuseTerm = dot(vertexNormalOut, lightDirectionOut);
+	float diffuseTerm = dot(bumpNormals, lightDirectionOut);
 	vec3 halfWayVec = normalize(cameraDirectionOut + lightDirectionOut);
-	float specularTerm = pow(dot(vertexNormalOut, halfWayVec), specularPower);
+	float specularTerm = pow(dot(bumpNormals, halfWayVec), specularPower);
 	
 	vec4 diffuseTextureColour = texture(diffuseMap, texCoordsOut);
 	vec4 specularTextureColour = texture(specularMap, texCoordsOut);
