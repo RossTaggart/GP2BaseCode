@@ -65,11 +65,18 @@ bool Material::loadShader(const std::string& vsFilename,const std::string& fsFil
 	glDeleteShader(vertexShaderProgram);
 	glDeleteShader(fragmentShaderProgram);
     
-    glBindAttribLocation(m_ShaderProgram, 0, "vertexPosition");
+   /* glBindAttribLocation(m_ShaderProgram, 0, "vertexPosition");
 	glBindAttribLocation(m_ShaderProgram, 1, "vertexNormals");
-	glBindAttribLocation(m_ShaderProgram,2, "vertexTangents");
+	glBindAttribLocation(m_ShaderProgram, 2, "vertexTangents");
 	glBindAttribLocation(m_ShaderProgram, 3, "vertexBinormals");
-	glBindAttribLocation(m_ShaderProgram, 4, "vertexTexCoords");
+	glBindAttribLocation(m_ShaderProgram, 4, "vertexTexCoords");*/
+
+	glBindAttribLocation(m_ShaderProgram, 0, "vertexPosition");
+	glBindAttribLocation(m_ShaderProgram, 1, "vertexNormals");
+	glBindAttribLocation(m_ShaderProgram, 2, "vertexTexCoords");
+	glBindAttribLocation(m_ShaderProgram, 3, "vertexColour");
+	glBindAttribLocation(m_ShaderProgram, 4, "vertexTangents");
+	glBindAttribLocation(m_ShaderProgram, 5, "vertexBinormals");
 
     return true;
 }

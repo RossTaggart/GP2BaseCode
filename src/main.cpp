@@ -318,8 +318,8 @@ void renderGameObject(GameObject * pObject)
 		glUniform3fv(lightDirectionLocation, 1, glm::value_ptr(lightDirection));
 
 		glUniform1i(diffuseTextureLocation, 0);
-		glUniform1i(specularTextureLocation, 0);
-		glUniform1i(bumpTextureLocation, 0);
+		glUniform1i(specularTextureLocation, 1);
+		glUniform1i(bumpTextureLocation, 2);
 
 		glDrawElements(GL_TRIANGLES, currentMesh->getIndexCount(), GL_UNSIGNED_INT, 0);
 	}

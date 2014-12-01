@@ -100,7 +100,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Specialised Applications\SDL2\include;C:\Specialised Applications\glew-1.11.0\include;C:\Specialised Applications\glm;C:\Specialised Applications\SDL2_image-2.0.0\include;C:\Specialised Applications\SDL2_ttf-2.0.12\include;C:\Program Files\Autodesk\FBX\FBX SDK\2015.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ross\Documents\GitHub\GP2BaseCode\headers;C:\Specialised Applications\SDL2\include;C:\Specialised Applications\glew-1.11.0\include;C:\Specialised Applications\glm;C:\Specialised Applications\SDL2_image-2.0.0\include;C:\Specialised Applications\SDL2_ttf-2.0.12\include;C:\Program Files\Autodesk\FBX\FBX SDK\2015.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
